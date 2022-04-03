@@ -1,0 +1,188 @@
+html {
+    box-sizing: border-box;
+    font-size: 16px;
+}
+body {
+    margin: 0;
+}
+.box {
+    border: thick solid #000;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 5rem;
+    width: 200px;
+    height: 200px;
+}
+.card {
+    border: thick solid #000;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 5rem;
+    width: 600px;
+    height: 400px;
+    overflow: hidden;
+}
+.card img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: 0 50%;
+}
+
+/******  transiciones    ******/
+
+/* ejemplo 1 */
+.transitions .box {
+    background-color: aqua;
+    /* que quiero afectar  en el hover en este caso*/
+    transition-property: background-color;
+    /* duracion */
+    transition-duration: 500ms;
+    /* tipo de acelearion o desaceleracion */
+    transition-timing-function: ease-out;
+    /* retraso */
+    transition-delay: 100ms;
+    /* atajo */
+    transition: border-color 1.5s ease-out 1s;
+}
+.transitions .box:hover {
+    background-color: hotpink;
+    border-color: blue;
+}
+
+/* ejemplo 2 */
+.transitions .card img {
+    transition: object-position 500ms ease-out, transform 500ms ease-out 0.5s;
+}
+.transitions .card img:hover {
+    object-position: 100% 50%;
+    transform: scale(120%);
+}
+
+/******  transformaciones 2d    ******/
+.transform-2d img {
+    transition: transform 2s ease-in-out;
+}
+.transform-2d img:hover {
+    transform: translateX(3rem);
+    transform: translateY(2rem);
+    transform: translate(-3rem, -2rem);
+}
+
+/******  transformaciones 3d    ******/
+/* .transform-3d img {
+    transition: transform 1s ease-out;
+}
+.transform-3d img:hover {
+
+} */
+
+.flip-card-1 {
+    border: thick solid #000;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 5rem;
+    width: 600px;
+    height: 400px;
+    /* overflow: hidden; */
+
+    position: relative;
+    cursor: pointer;
+    transition: transform 1s ease-in-out;
+    perspective: 10rem;
+    transform-style: preserve-3d;
+}
+.flip-card-1:hover {
+    transform: rotateY(180deg);
+}
+.flip-card-1 img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: 0 50%;
+}
+.flip-face {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    backface-visibility: hidden;
+}
+.flip-front {
+    transform: rotateY(0deg);
+}
+.flip-back {
+    transform: rotateY(180deg);
+}
+
+/* ANIMACIONES */
+@keyframes myFirstAnimation {
+
+    /* fotograma inicial (from ó 0%) */
+    0% {
+        transform: translateX(0);
+        opacity: 0;
+    }
+
+    /* fotograma final (to ó 100%) */
+    100% {
+        transform: translateX(50%);
+        opacity: 1;
+    }
+}
+.my-animation {
+    animation-name: myFirstAnimation;
+    animation-duration: 1.2s;
+    animation-timing-function: ease-in-out;
+    animation-delay: 0;
+    animation-iteration-count: 3;
+    animation-direction: alternate;
+    animation-fill-mode: both;
+    /* atajo */
+    /* animation: name duration timing-function delay iteration-count direction fill-mode; */
+}
+
+/* ejercicio corazon */
+@keyframes pulse {
+    0% {
+        transform: scale(1);
+    }
+    75% {
+        transform: scale(1.1);
+    }
+    100% {
+        transform: scale(1);
+    }
+}
+@keyframes colorPulse {
+    75% {
+        background-color: #f00;
+    }
+}
+.heart {
+    position: relative;
+    margin-left: auto;
+    margin-right: auto;
+    width: 10vw;
+    height: 10vw;
+    /* background-color: #000; */
+    animation: pulse 1s ease-in infinite;
+}
+.heart::before,
+.heart::after {
+    position: absolute;
+    content: "";
+    left: 5vw;
+    top: 0;
+    width: 5vw;
+    height: 8vw;
+    background-color: #a00;
+    transform: rotate(-45deg);
+    transform-origin: 0 100%;
+    border-radius: 5vw 5vw 0 0;
+    animation: colorPulse 1s ease-in infinite;
+}
+.heart::before {
+    left: 0;
+    transform: rotate(45deg);
+    transform-origin: 100% 100%;
+}
