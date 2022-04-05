@@ -119,13 +119,13 @@ body {
 
     /* fotograma inicial (from ó 0%) */
     0% {
-        transform: translateX(0);
+        transform: translateY(0);
         opacity: 0;
     }
 
     /* fotograma final (to ó 100%) */
     100% {
-        transform: translateX(50%);
+        transform: translateY(50%);
         opacity: 1;
     }
 }
@@ -134,7 +134,7 @@ body {
     animation-duration: 1.2s;
     animation-timing-function: ease-in-out;
     animation-delay: 0;
-    animation-iteration-count: 3;
+    animation-iteration-count: 1;
     animation-direction: alternate;
     animation-fill-mode: both;
     /* atajo */
